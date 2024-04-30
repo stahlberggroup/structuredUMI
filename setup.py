@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from setuptools import setup, find_packages
 
-install_requires = ["numpy","matplotlib","itertools"]
+install_requires = ["numpy","matplotlib"]
 
 pack = find_packages()
 
