@@ -15,6 +15,6 @@ setup(name='structuredUMI',
         include_package_data=True,
         classifiers=['Topic :: Scientific/Engineering :: Bio-Informatics'],
         scripts=['simulation_structured_umi.py',
-                'simulation_umi_design_1-3.py',
+                'simulation_umi_design_1-7.py',
                 'plot_simulation_results.py'],
         zip_safe=False)

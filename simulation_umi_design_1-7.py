@@ -43,28 +43,44 @@ def check_interactions(a,b,window_size):
             break
     return(interaction,gc)
 
-
-def main(args):
+def generate_combinations_list(umi):
     bases = ['A','C','T', 'G']
     sbases = ['G','C']
     wbases = ['A','T']
+    l=[]
+    for s in umi:
+        if s=='N':
+            l = l + [list(bases)]
+        elif s=='S':
+            l = l + [list(sbases)]
+        elif s=='W':
+            l = l + [list(wbases)]
+        else:
+            l = l + [list(s)]
+    return(l)
+
+def main(args):
     window_size = int(args.window_size)
     gc_count_cutoff = int(args.gc_cutoff)
-    n_samples = args.n_samples
+    n_samples = int(args.n_samples)
     barcode_design = args.barcode_design
     output_file = args.output_file
     if barcode_design=='I': #NNNNNWWNNNNN
-        l = [list(bases)]*5 +[list(wbases)]*2 + [list(bases)]*5
         umi="NNNNNWWNNNNN"
     elif barcode_design=='II': #SSWSWWWSWWSWSS
-        l = [list(sbases)]*2 +[list(wbases)] + [list(sbases)] + [list(wbases)]*3 + [list(sbases)] + [list(wbases)]*2 + [list(sbases)] + [list(wbases)] + [list(sbases)]*2
         umi="SSWSWWWSWWSWSS"
-    elif barcode_design=='III': #SWSSWWWSSWSWWWSWWSWSS
-        l = [list(sbases)] +[list(wbases)] + [list(sbases)]*2 + [list(wbases)]*3 + [list(sbases)]*2 + [list(wbases)] + [list(sbases)] + [list(wbases)]*3 + [list(sbases)]+[list(wbases)]*2 + [list(sbases)]+[list(wbases)] + [list(sbases)]*2
+    elif barcode_design=='III' or barcode_design=='IV': #SWSSWWWSSWSWWWSWWSWSS
         umi="SWSSWWWSSWSWWWSWWSWSS"
+    elif barcode_design=='V': # SWSSWSSWWWSSWSWWWSWWSWSS
+        umi="SWSSWSSWWWSSWSWWWSWWSWSS"
+    elif barcode_design=='VI':
+        umi="SWSWSWSWSWSWSWSWSWSWSWSW"
+    elif barcode_design=='VII':
+        umi="SSWWSSWWSSWWSSWWSSWWSSWW"
     else:
-        print('Please choose a barcode design between I,II or III.')
+        print('Please choose a barcode design between I,II or III, IV, V, VI, VII')
         sys.exit(1)
+    l=generate_combinations_list(umi)
     prods = itertools.product(*l)
     prodlist=["".join(x) for x in prods]
     prodssample=random.sample(prodlist,n_samples)

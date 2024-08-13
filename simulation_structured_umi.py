@@ -72,7 +72,7 @@ def main(args):
     #pattern2='NNANNNNANNNNANN'
     groups=create_groups(umi_pattern)
     window_size = int(args.window_size)
-    n_samples = args.n_samples
+    n_samples = int(args.n_samples)
     gc_count_cutoff = int(args.gc_cutoff)
     output_file = args.output_file
     
