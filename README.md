@@ -25,7 +25,7 @@ Optional arguments:
 |`-gc`     |`--gc-cutoff`       |Number of GC bases within the window to be reported as  a gc-rich sub-sequence. Default = 3.                                                     |
 |`-o`      |`--output-file`     |Output file. Note that the output file can be appended with new simulations if an existing file is specified. Default is to write to stdout (-). |
 
-`simulation_umi_design_1-3.py -h`
+`simulation_umi_design_1-7777777.py -h`
 
 `plot_simulation_results.py`
 
